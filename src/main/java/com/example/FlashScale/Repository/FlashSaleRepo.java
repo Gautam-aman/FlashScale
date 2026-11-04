@@ -1,4 +1,6 @@
 package com.example.FlashScale.Repository;
 
-public class FlashSaleRepo {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface FlashSaleRepo extends JpaRepository<FlashSaleRepo , Long> {
 }
