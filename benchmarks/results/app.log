@@ -1,0 +1,82 @@
+[INFO] Scanning for projects...
+[INFO] Loaded 24360 auto-discovered prefixes for remote repository central (prefixes-central.txt)
+[INFO] 
+[INFO] -----------------------< com.example:FlashScale >-----------------------
+[INFO] Building  0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> spring-boot:4.1.2:run (default-cli) > test-compile @ FlashScale >>>
+[INFO] Loaded 24360 auto-discovered prefixes for remote repository maven-central (prefixes-maven-central.txt)
+[WARNING] Could not transfer metadata /.meta/prefixes.txt from/to flyway-community-db-support (https://maven.pkg.github.com/flyway/flyway-community-db-support): HTTP Status: 401
+[WARNING] Could not transfer metadata /.meta/prefixes.txt from/to MavenFeed (https://red-gate.pkgs.visualstudio.com/MavenFeed/_packaging/MavenFeed/maven/v1/): HTTP Status: 401
+[INFO] 
+[INFO] --- resources:3.5.0:resources (default-resources) @ FlashScale ---
+[INFO] Copying 1 resource from src/main/resources to target/classes
+[INFO] Copying 8 resources from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.15.0:compile (default-compile) @ FlashScale ---
+[INFO] Loaded 64 auto-discovered prefixes for remote repository apache.snapshots (prefixes-apache.snapshots.txt)
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- resources:3.5.0:testResources (default-testResources) @ FlashScale ---
+[INFO] skip non existing resourceDirectory /Users/rigelsmacbook/Java Projects/FlashScale/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.15.0:testCompile (default-testCompile) @ FlashScale ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] <<< spring-boot:4.1.2:run (default-cli) < test-compile @ FlashScale <<<
+[INFO] 
+[INFO] 
+[INFO] --- spring-boot:4.1.2:run (default-cli) @ FlashScale ---
+[INFO] Loaded 50 auto-discovered prefixes for remote repository ow2-snapshot (prefixes-ow2-snapshot.txt)
+[INFO] Attaching agents: []
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v4.1.2)
+
+2026-11-04T16:21:45.179+05:30  INFO 34843 --- [FlashScale] [           main] c.e.FlashScale.FlashScaleApplication     : Starting FlashScaleApplication using Java 21.0.7 with PID 34843 (/Users/rigelsmacbook/Java Projects/FlashScale/target/classes started by rigelsmacbook in /Users/rigelsmacbook/Java Projects/FlashScale)
+2026-11-04T16:21:45.181+05:30  INFO 34843 --- [FlashScale] [           main] c.e.FlashScale.FlashScaleApplication     : No active profile set, falling back to 1 default profile: "default"
+2026-11-04T16:21:45.524+05:30  INFO 34843 --- [FlashScale] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-11-04T16:21:45.548+05:30  INFO 34843 --- [FlashScale] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 19 ms. Found 4 JPA repository interfaces.
+2026-11-04T16:21:45.797+05:30  INFO 34843 --- [FlashScale] [           main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8080 (http)
+2026-11-04T16:21:45.805+05:30  INFO 34843 --- [FlashScale] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-11-04T16:21:45.805+05:30  INFO 34843 --- [FlashScale] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.27]
+2026-11-04T16:21:45.828+05:30  INFO 34843 --- [FlashScale] [           main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 623 ms
+2026-11-04T16:21:45.995+05:30  INFO 34843 --- [FlashScale] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-11-04T16:21:46.122+05:30  INFO 34843 --- [FlashScale] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@472c9f88
+2026-11-04T16:21:46.122+05:30  INFO 34843 --- [FlashScale] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-11-04T16:21:46.145+05:30  INFO 34843 --- [FlashScale] [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://localhost:5433/flashscale (PostgreSQL 17.11)
+2026-11-04T16:21:46.196+05:30  INFO 34843 --- [FlashScale] [           main] o.f.core.internal.command.DbValidate     : Successfully validated 3 migrations (execution time 00:00.015s)
+2026-11-04T16:21:46.229+05:30  INFO 34843 --- [FlashScale] [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "public": 3
+2026-11-04T16:21:46.230+05:30  INFO 34843 --- [FlashScale] [           main] o.f.core.internal.command.DbMigrate      : Schema "public" is up to date. No migration necessary.
+2026-11-04T16:21:46.273+05:30  INFO 34843 --- [FlashScale] [           main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-11-04T16:21:46.306+05:30  INFO 34843 --- [FlashScale] [           main] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.4.13.Final
+2026-11-04T16:21:46.483+05:30  INFO 34843 --- [FlashScale] [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-11-04T16:21:46.539+05:30  INFO 34843 --- [FlashScale] [           main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://localhost:5433/flashscale]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 17.11
+	Default catalog/schema: flashscale/public
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-11-04T16:21:46.970+05:30  INFO 34843 --- [FlashScale] [           main] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-11-04T16:21:47.012+05:30  INFO 34843 --- [FlashScale] [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-11-04T16:21:47.046+05:30  INFO 34843 --- [FlashScale] [           main] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-11-04T16:21:47.383+05:30  INFO 34843 --- [FlashScale] [           main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 4 endpoints beneath base path '/actuator'
+2026-11-04T16:21:47.419+05:30  INFO 34843 --- [FlashScale] [           main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8080 (http) with context path '/'
+2026-11-04T16:21:47.423+05:30  INFO 34843 --- [FlashScale] [           main] c.e.FlashScale.FlashScaleApplication     : Started FlashScaleApplication in 2.46 seconds (process running for 2.642)
+2026-11-04T16:21:47.766+05:30  INFO 34843 --- [FlashScale] [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-11-04T16:21:47.766+05:30  INFO 34843 --- [FlashScale] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-11-04T16:21:47.767+05:30  INFO 34843 --- [FlashScale] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms

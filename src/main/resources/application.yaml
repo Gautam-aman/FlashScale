@@ -11,6 +11,13 @@ spring:
       maximum-pool-size: 10
       minimum-idle: 2
 
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+      timeout: 2s
+      connect-timeout: 2s
+
   jpa:
     hibernate:
       ddl-auto: validate
@@ -33,3 +40,13 @@ management:
   endpoint:
     health:
       show-details: always
+
+
+flashscale:
+  admission:
+    max-inflight: 32
+    permit-lease-ms: 30000
+    user-burst: 10
+    user-refill-per-second: 5
+
+
