@@ -34,13 +34,13 @@ public class ReservationSqlRepository {
 
     public boolean deductStock(Long itemId, int quantity) {
         String sql = """
-            UPDATE Flash_Sale_Item AS item
+            UPDATE flash_sale_items AS item
             SET available_stock = available_stock - ?
             WHERE item.id = ?
               AND item.available_stock >= ?
               AND EXISTS (
                   SELECT 1
-                  FROM Flash_Sale_Item AS sale
+                  FROM flash_sales AS sale
                   WHERE sale.id = item.flash_sale_id
                     AND sale.starts_at <= clock_timestamp()
                     AND sale.ends_at > clock_timestamp()

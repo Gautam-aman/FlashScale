@@ -6,7 +6,7 @@ import lombok.*;
 import java.time.Instant;
 
 @Entity
-@Table(name = "FLashSale")
+@Table(name = "flash_sales")
 @Getter
 @Setter
 @AllArgsConstructor
