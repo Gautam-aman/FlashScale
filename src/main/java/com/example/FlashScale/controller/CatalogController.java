@@ -1,5 +1,6 @@
 package com.example.FlashScale.controller;
 
+import com.example.FlashScale.cache.CachedProductService;
 import com.example.FlashScale.dto.CatalogDtos;
 import com.example.FlashScale.service.CatalogService;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +19,7 @@ public class CatalogController {
 
     @Autowired
     private final CatalogService service;
+    private final CachedProductService cachedProductService;
 
     @GetMapping("/products")
     public List<CatalogDtos.ProductResponse> getProducts() {
@@ -26,7 +28,7 @@ public class CatalogController {
 
     @GetMapping("/products/{id}")
     public CatalogDtos.ProductResponse getProduct(@PathVariable Long id) {
-        return service.getProduct(id);
+        return cachedProductService.getProduct(id);
     }
 
     @GetMapping("/sales")

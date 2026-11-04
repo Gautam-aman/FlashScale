@@ -373,5 +373,26 @@
       "oversold": 0,
       "invariant": true
     }
+  },
+  {
+    "mode": "reserve",
+    "rate": 200,
+    "repeat": 3,
+    "achieved": 199.58451224185004,
+    "successful": 199.58451224185004,
+    "p95": 48.02825,
+    "p99": 423.465,
+    "error": 0,
+    "dropped": 25,
+    "passed": false,
+    "inventory": {
+      "item_id": 16,
+      "initial": 50000,
+      "remaining": 38024,
+      "reservations": 11976,
+      "units": 11976,
+      "oversold": 0,
+      "invariant": true
+    }
   }
 ]

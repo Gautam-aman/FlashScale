@@ -80,3 +80,8 @@
 2026-11-04T16:21:47.766+05:30  INFO 34843 --- [FlashScale] [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
 2026-11-04T16:21:47.766+05:30  INFO 34843 --- [FlashScale] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
 2026-11-04T16:21:47.767+05:30  INFO 34843 --- [FlashScale] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2026-11-04T16:46:38.889+05:30  INFO 34843 --- [FlashScale] [ionShutdownHook] o.s.boot.tomcat.GracefulShutdown         : Commencing graceful shutdown. Waiting for active requests to complete
+2026-11-04T16:46:40.932+05:30  INFO 34843 --- [FlashScale] [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown         : Graceful shutdown complete
+2026-11-04T16:46:41.012+05:30  INFO 34843 --- [FlashScale] [ionShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-11-04T16:46:41.025+05:30  INFO 34843 --- [FlashScale] [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-11-04T16:46:41.031+05:30  INFO 34843 --- [FlashScale] [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
