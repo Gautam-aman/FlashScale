@@ -3,6 +3,7 @@ package com.example.FlashScale.controller;
 import com.example.FlashScale.dto.CatalogDtos;
 import com.example.FlashScale.service.CatalogService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,6 +14,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CatalogController {
 
+    @Autowired
     private final CatalogService service;
 
     @GetMapping("/products")
