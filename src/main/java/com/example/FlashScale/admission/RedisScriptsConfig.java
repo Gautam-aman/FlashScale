@@ -14,7 +14,6 @@ import org.springframework.data.redis.core.script.RedisScript;
             DefaultRedisScript<Long> script = new DefaultRedisScript<>();
             script.setLocation(new ClassPathResource("redis/" +  filename));
             script.setResultType(Long.class);
-
             return script;
         }
 
