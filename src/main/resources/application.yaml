@@ -2,6 +2,25 @@ spring:
   application:
     name: FlashScale
 
+  datasource:
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5433}/${DB_NAME:flashscale}
+    username: ${DB_USER:flashscale}
+    password: ${DB_PASSWORD:flashscale_dev}
+
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 2
+
+    jpa:
+      hibernate:
+        ddl-auto: validate
+      open-in-view: false
+
+    flyway:
+      enabled: true
+      locations: classpath:db/migration
+
+
 server:
   port: 8080
 

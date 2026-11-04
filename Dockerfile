@@ -1,0 +1,22 @@
+services:
+  db:
+    image: postgres:17-alpine
+    container_name: flashscale-postgres
+    environment:
+      POSTGRES_DB: flashscale
+      POSTGRES_USER: flashscale
+      POSTGRES_PASSWORD: flashscale_dev
+    ports:
+      - "127.0.0.1:5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - pg_isready -U flashscale -d flashscale
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  postgres_data:
