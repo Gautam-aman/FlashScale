@@ -1,3 +1,13 @@
 spring:
   application:
     name: FlashScale
+
+server:
+  port: 8080
+
+
+management:
+  endpoint:
+    web:
+      exposure:
+        include : health,info
