@@ -1,0 +1,48 @@
+
+         /\      Grafana   /‾‾/  
+    /\  /  \     |\  __   /  /   
+   /  \/    \    | |/ /  /   ‾‾\ 
+  /          \   |   (  |  (‾)  |
+ / __________ \  |_|\_\  \_____/ 
+
+
+     execution: local
+        script: load-tests/baseline.js
+        output: -
+
+     scenarios: (100.00%) 1 scenario, 100 max VUs, 1m30s max duration (incl. graceful stop):
+              * baseline: 200.00 iterations/s for 1m0s (maxVUs: 100, gracefulStop: 30s)
+
+
+running (0m01.0s), 001/100 VUs, 198 complete and 0 interrupted iterations
+baseline   [   2% ] 001/100 VUs  0m01.0s/1m0s  200.00 iters/s
+
+running (0m02.0s), 001/100 VUs, 398 complete and 0 interrupted iterations
+baseline   [   3% ] 001/100 VUs  0m02.0s/1m0s  200.00 iters/s
+
+running (0m03.0s), 001/100 VUs, 598 complete and 0 interrupted iterations
+baseline   [   5% ] 001/100 VUs  0m03.0s/1m0s  200.00 iters/s
+
+running (0m04.0s), 001/100 VUs, 798 complete and 0 interrupted iterations
+baseline   [   7% ] 001/100 VUs  0m04.0s/1m0s  200.00 iters/s
+
+running (0m05.0s), 001/100 VUs, 998 complete and 0 interrupted iterations
+baseline   [   8% ] 001/100 VUs  0m05.0s/1m0s  200.00 iters/s
+
+running (0m06.0s), 001/100 VUs, 1198 complete and 0 interrupted iterations
+baseline   [  10% ] 001/100 VUs  0m06.0s/1m0s  200.00 iters/s
+
+running (0m07.0s), 001/100 VUs, 1398 complete and 0 interrupted iterations
+baseline   [  12% ] 001/100 VUs  0m07.0s/1m0s  200.00 iters/s
+
+running (0m08.0s), 001/100 VUs, 1598 complete and 0 interrupted iterations
+baseline   [  13% ] 001/100 VUs  0m08.0s/1m0s  200.00 iters/s
+
+running (0m09.0s), 001/100 VUs, 1798 complete and 0 interrupted iterations
+baseline   [  15% ] 001/100 VUs  0m09.0s/1m0s  200.00 iters/s
+
+running (0m10.0s), 001/100 VUs, 1998 complete and 0 interrupted iterations
+baseline   [  17% ] 001/100 VUs  0m10.0s/1m0s  200.00 iters/s
+
+running (0m11.0s), 001/100 VUs, 2198 complete and 0 interrupted iterations
+baseline   [  18% ] 001/100 VUs  0m11.0s/1m0s  200.00 iters/s
