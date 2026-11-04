@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.time.Instant;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -131,6 +132,21 @@ public class ReservationService {
         );
     }
 
+
+    @Transactional
+    public Optional<ReservationDtos.ReserveResult> replayIfExists(ReservationDtos.ReserveRequest request,
+                                                                  String idempotencyKey) {
+
+        return reservations
+                .findByUserIdAndIdempotencyKey(
+                        request.userId(),
+                        idempotencyKey
+                )
+                .map(existing -> new ReservationDtos.ReserveResult(
+                        matchAndConvert(existing, request),
+                        false
+                ));
+    }
 
 
 }

@@ -1,5 +1,6 @@
 package com.example.FlashScale.reservation;
 
+import com.example.FlashScale.admission.ReservationFacade;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -13,7 +14,8 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class ReservationController {
 
-    private final ReservationService service;
+   // private final ReservationService service;
+    private final ReservationFacade service;
 
     @PostMapping
     public ResponseEntity<ReservationDtos.ReservationResponse> reserve(@Valid @RequestBody ReservationDtos.ReserveRequest request, @RequestHeader("Idempotency-Key") String key) {
