@@ -2,6 +2,7 @@ package com.example.FlashScale.reservation;
 
 import com.example.FlashScale.Models.FlashSaleItem;
 import com.example.FlashScale.Repository.FlashSaleItemRepo;
+import com.example.FlashScale.kafka.OutboxRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,7 @@ public class ReservationService {
     private final ReservationRepository reservations;
     private final ReservationSqlRepository reservationSql;
     private final FlashSaleItemRepo saleItems;
+    private final OutboxRepository outbox;
 
     @Transactional
     public ReservationDtos.ReserveResult reserve(ReservationDtos.ReserveRequest request, String idempotencyKey) {
@@ -59,6 +61,7 @@ public class ReservationService {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "Insufficient inventory or sale ended");
         }
 
+        outbox.record(reservationId, request.flashSaleItemId(), request.quantity());
         return new ReservationDtos.ReserveResult(new ReservationDtos.ReservationResponse(reservationId, request.flashSaleItemId(), request.userId(), request.quantity(), "RESERVED"), true);
     }
 
