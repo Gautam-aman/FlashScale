@@ -30,5 +30,16 @@ public class RedisScriptsConfig {
     public RedisScript<Long> releasePermitScript() {
         return load("release-permit.lua");
     }
+
+
+    @Bean("stockHoldScript")
+    public RedisScript<Long> stockHoldScript() {return load("stock-hold.lua");}
+
+    @Bean("stockConfirmScript")
+    public RedisScript<Long> stockConfirmScript() {return load("stock-confirm.lua");}
+
+    @Bean("stockReleaseScript")
+    public RedisScript<Long> stockReleaseScript() {return load("stock-release.lua");}
+
 }
 
