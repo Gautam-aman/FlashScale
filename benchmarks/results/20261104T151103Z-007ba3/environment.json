@@ -1,0 +1,13 @@
+{
+  "timestamp": "20261104T151103Z-007ba3",
+  "label": "redis",
+  "platform": "macOS-27.2-arm64-arm-64bit",
+  "processor": "arm",
+  "base_url": "http://localhost:8081",
+  "duration_seconds": 60,
+  "vus": 100,
+  "repeats": 3,
+  "git_commit": "2b983305a2a1fc975e05d5b6bd1b7e3cc3413816",
+  "git_status": " M benchmarks/run-baseline.py\n M src/main/java/com/example/FlashScale/Models/FlashSale.java\n M src/main/java/com/example/FlashScale/admission/RedisAdmissionGuard.java\n M src/main/java/com/example/FlashScale/admission/RedisScriptsConfig.java\n M src/main/java/com/example/FlashScale/admission/ReservationFacade.java\n M src/main/java/com/example/FlashScale/cache/CachedProductService.java\n M src/main/java/com/example/FlashScale/controller/CatalogController.java\n M src/main/java/com/example/FlashScale/controller/testapi/SystemController.java\n M src/main/java/com/example/FlashScale/dto/CatalogDtos.java\n M src/main/java/com/example/FlashScale/reservation/ReservationController.java\n M src/main/java/com/example/FlashScale/reservation/ReservationDtos.java\n M src/main/java/com/example/FlashScale/reservation/ReservationRepository.java\n M src/main/java/com/example/FlashScale/reservation/ReservationService.java\n M src/main/java/com/example/FlashScale/reservation/ReservationSqlRepository.java\n M src/main/java/com/example/FlashScale/service/CatalogService.java\n M src/main/resources/application.yaml\nD  src/main/resources/pplication.yml\n M src/test/java/com/example/FlashScale/CatalogIntegrationTest.java\nAM src/test/java/com/example/FlashScale/RedisAdmissionGuardIntegrationTest.java\n?? benchmarks/compare-results.py\n",
+  "k6": "k6 v2.1.0 (commit/devel, go1.26.4, darwin/arm64)"
+}

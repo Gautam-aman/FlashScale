@@ -20,11 +20,7 @@ public class ReservationController {
     @PostMapping
     public ResponseEntity<ReservationDtos.ReservationResponse> reserve(@Valid @RequestBody ReservationDtos.ReserveRequest request, @RequestHeader("Idempotency-Key") String key) {
         ReservationDtos.ReserveResult result = service.reserve(request, key);
-        return ResponseEntity
-                .status(
-                        result.created() ? HttpStatus.CREATED : HttpStatus.OK
-                )
-                .body(result.response());
+        return ResponseEntity.status(result.created() ? HttpStatus.CREATED : HttpStatus.OK).body(result.response());
     }
 
     @GetMapping("/{id}")

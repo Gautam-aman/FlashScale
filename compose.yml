@@ -17,7 +17,13 @@ services:
       interval: 5s
       timeout: 3s
       retries: 10
-
+  kafka:
+    image: apache/kafka:4.1.2
+    container_name: flashscale-kafka
+    ports:
+      - "127.0.0.1:9092:9092"
+    volumes:
+      - kafka_data:/var/lib/kafka/data
 
   redis:
     image: redis:7.4-alpine
@@ -39,3 +45,4 @@ services:
 
 volumes:
   postgres_data:
+  kafka_data:

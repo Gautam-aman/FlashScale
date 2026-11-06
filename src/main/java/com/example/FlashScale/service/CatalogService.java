@@ -25,61 +25,32 @@ public class CatalogService {
     private final FlashSaleItemRepo saleItems;
 
     public List<CatalogDtos.ProductResponse> getProducts() {
-        return products.findAll(Sort.by("id"))
-                .stream()
-                .map(this::toProductResponse)
-                .toList();
+        return products.findAll(Sort.by("id")).stream().map(this::toProductResponse).toList();
     }
 
     public CatalogDtos.ProductResponse getProduct(Long id) {
-        return toProductResponse(
-                products.findById(id).orElseThrow(() ->
-                        new ResponseStatusException(
-                                HttpStatus.NOT_FOUND, "Product not found"
-                        )
-                )
-        );
+        return toProductResponse(products.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Product not found")));
     }
 
     public List<CatalogDtos.FlashSaleResponse> getSales() {
-        return sales.findAll(Sort.by("id"))
-                .stream()
-                .map(this::toSaleResponse)
-                .toList();
+        return sales.findAll(Sort.by("id")).stream().map(this::toSaleResponse).toList();
     }
 
     public CatalogDtos.FlashSaleResponse getSale(Long id) {
-        return toSaleResponse(
-                sales.findById(id).orElseThrow(() ->
-                        new ResponseStatusException(
-                                HttpStatus.NOT_FOUND, "Sale not found"
-                        )
-                )
-        );
+        return toSaleResponse(sales.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Sale not found")));
     }
 
     public List<CatalogDtos.SaleItemResponse> getSaleItems(Long saleId) {
         // Ensure unknown sale IDs return 404.
         if (!sales.existsById(saleId)) {
-            throw new ResponseStatusException(
-                    HttpStatus.NOT_FOUND, "Sale not found"
-            );
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Sale not found");
         }
 
-        return saleItems
-                .findByFlashSale_IdOrderByIdAsc(saleId)
-                .stream()
-                .map(this::toSaleItemResponse)
-                .toList();
+        return saleItems.findByFlashSale_IdOrderByIdAsc(saleId).stream().map(this::toSaleItemResponse).toList();
     }
 
     private CatalogDtos.ProductResponse toProductResponse(Product product) {
-        return new CatalogDtos.ProductResponse(
-                product.getId(),
-                product.getSku(),
-                product.getName(),
-                product.getPricePaise()
-        );
+        return new CatalogDtos.ProductResponse(product.getId(), product.getSku(), product.getName(), product.getPricePaise());
     }
 
     private CatalogDtos.FlashSaleResponse toSaleResponse(FlashSale sale) {
@@ -95,30 +66,14 @@ public class CatalogService {
             status = "ENDED";
         }
 
-        return new CatalogDtos.FlashSaleResponse(
-                sale.getId(),
-                sale.getTitle(),
-                sale.getStartsAt(),
-                sale.getEndsAt(),
-                status
-        );
+        return new CatalogDtos.FlashSaleResponse(sale.getId(), sale.getTitle(), sale.getStartsAt(), sale.getEndsAt(), status);
     }
 
     private CatalogDtos.SaleItemResponse toSaleItemResponse(FlashSaleItem item) {
 
         Product product = item.getProduct();
 
-        return new CatalogDtos.SaleItemResponse(
-                product.getId(),
-                product.getSku(),
-                product.getName(),
-                item.getSalePricePaise(),
-                item.getTotalStock(),
-                item.getAvailableStock()
-        );
+        return new CatalogDtos.SaleItemResponse(product.getId(), product.getSku(), product.getName(), item.getSalePricePaise(), item.getTotalStock(), item.getAvailableStock());
     }
-
-
-
 
 }

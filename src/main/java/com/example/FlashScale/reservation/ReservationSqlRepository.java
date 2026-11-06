@@ -12,7 +12,6 @@ public class ReservationSqlRepository {
 
     private final JdbcTemplate jdbc;
 
-
     public boolean insertIfAbsent(UUID id, Long itemId, String userId, String idempotencyKey, int quantity) {
         String sql = """
             INSERT INTO reservations (
@@ -47,12 +46,7 @@ public class ReservationSqlRepository {
               )
             """;
 
-        int updated = jdbc.update(
-                sql,
-                quantity,
-                itemId,
-                quantity
-        );
+        int updated = jdbc.update(sql, quantity, itemId, quantity);
         return updated == 1;
     }
 }

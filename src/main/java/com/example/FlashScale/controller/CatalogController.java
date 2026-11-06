@@ -42,8 +42,7 @@ public class CatalogController {
     }
 
     @GetMapping("/sales/{id}/items")
-    public List<CatalogDtos.SaleItemResponse> getSaleItems(
-            @PathVariable Long id) {
+    public List<CatalogDtos.SaleItemResponse> getSaleItems(@PathVariable Long id) {
         return service.getSaleItems(id);
     }
 

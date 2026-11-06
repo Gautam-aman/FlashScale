@@ -27,28 +27,16 @@ class CatalogIntegrationTest {
 
         assertEquals(1, sales.size());
 
-        var items = catalogService.getSaleItems(
-                sales.getFirst().id()
-        );
+        var items = catalogService.getSaleItems(sales.getFirst().id());
 
         assertEquals(2, items.size());
-        assertTrue(items.stream().allMatch(item ->
-                item.availableStock() >= 0 &&
-                        item.availableStock() <= item.totalStock()
-        ));
+        assertTrue(items.stream().allMatch(item -> item.availableStock() >= 0 && item.availableStock() <= item.totalStock()));
     }
-
 
     @Test
     void shouldReturnNotFoundForUnknownProduct() {
-        var exception = assertThrows(
-                ResponseStatusException.class,
-                () -> catalogService.getProduct(99999L)
-        );
+        var exception = assertThrows(ResponseStatusException.class, () -> catalogService.getProduct(99999L));
 
-        assertEquals(
-                HttpStatus.NOT_FOUND,
-                exception.getStatusCode()
-        );
+        assertEquals(HttpStatus.NOT_FOUND, exception.getStatusCode());
     }
 }

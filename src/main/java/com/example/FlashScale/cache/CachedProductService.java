@@ -9,13 +9,13 @@ import org.springframework.stereotype.Service;
 import tools.jackson.databind.ObjectMapper;
 
 import java.time.Duration;
-import java.util.logging.Logger;
+import org.slf4j.Logger;
 
 @Service
 @RequiredArgsConstructor
 public class CachedProductService {
 
-    private static final Logger log = (Logger) LoggerFactory.getLogger(CachedProductService.class);
+    private static final Logger log = LoggerFactory.getLogger(CachedProductService.class);
     private static final Duration TTL = Duration.ofSeconds(60);
 
     private final CatalogService catalog;
@@ -27,13 +27,10 @@ public class CachedProductService {
         try {
             String cached = redis.opsForValue().get(key);
             if (cached != null) {
-                return mapper.readValue(
-                        cached,
-                        CatalogDtos.ProductResponse.class
-                );
+                return mapper.readValue(cached, CatalogDtos.ProductResponse.class);
             }
         } catch (Exception ex) {
-            log.warning("Cache read failed: {}" + ex.getMessage());
+            log.warn("Cache read failed", ex);
         }
 
         CatalogDtos.ProductResponse product = catalog.getProduct(id);
@@ -42,7 +39,7 @@ public class CachedProductService {
             String json = mapper.writeValueAsString(product);
             redis.opsForValue().set(key, json, TTL);
         } catch (Exception ex) {
-            log.warning("Cache write failed: {}" +  ex.getMessage());
+            log.warn("Cache write failed", ex);
         }
         return product;
     }

@@ -30,14 +30,21 @@ def main():
     parser.add_argument('--duration', type=int, default=60, help='seconds per measured run')
     parser.add_argument('--vus', type=int, default=100)
     parser.add_argument('--repeats', type=int, default=3)
+    parser.add_argument('--label', choices=['postgres', 'redis'], default='postgres')
+    parser.add_argument('--compare-with', type=Path, help='saved PostgreSQL result directory')
     args = parser.parse_args()
+    if args.compare_with:
+        baseline_environment = json.loads((args.compare_with / 'environment.json').read_text())
+        for argument, field in [('duration', 'duration_seconds'), ('vus', 'vus'), ('repeats', 'repeats')]:
+            if getattr(args, argument) != baseline_environment[field]:
+                parser.error(f'{argument} must match saved baseline ({baseline_environment[field]})')
     if min(args.duration, args.vus, args.repeats) <= 0:
         parser.error('duration, vus, and repeats must be positive')
     run_id = datetime.datetime.now(datetime.timezone.utc).strftime('%Y%m%dT%H%M%SZ') + '-' + uuid.uuid4().hex[:6]
     output = ROOT / 'benchmarks/results' / run_id
     output.mkdir(parents=True)
     metadata = {
-        'timestamp': run_id, 'platform': platform.platform(),
+        'timestamp': run_id, 'label': args.label, 'platform': platform.platform(),
         'processor': platform.processor(), 'base_url': args.base_url,
         'duration_seconds': args.duration, 'vus': args.vus, 'repeats': args.repeats,
         'git_commit': command(['git', 'rev-parse', 'HEAD'], capture_output=True).stdout.strip(),
@@ -96,7 +103,7 @@ def main():
                 records.append(record)
                 (output / 'runs.json').write_text(json.dumps(records, indent=2))
 
-    lines = ['# FlashScale — PostgreSQL Baseline Benchmark', '', '## Environment', '',
+    lines = [f'# FlashScale — {args.label.title()} Benchmark', '', '## Environment', '',
              '- Backend: Java 21 + Spring Boot (verify exact running version)',
              '- Database: PostgreSQL 17; data access: JPA + JDBC',
              '- Configured HikariCP maximum pool size: 10',
@@ -134,6 +141,8 @@ def main():
               '- Next experiment: Redis caching and Lua reservation admission, using the same workload.', '']
     (output / 'report.md').write_text('\n'.join(lines))
     print(f'Report: {output / "report.md"}')
+    if args.compare_with:
+        command(['python3', 'benchmarks/compare-results.py', str(args.compare_with.resolve()), str(output)])
 
 
 if __name__ == '__main__':

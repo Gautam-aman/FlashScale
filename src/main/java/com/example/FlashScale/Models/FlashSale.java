@@ -27,5 +27,4 @@ public class FlashSale {
     @Column(name = "ends_at", nullable = false)
     private Instant endsAt;
 
-
 }

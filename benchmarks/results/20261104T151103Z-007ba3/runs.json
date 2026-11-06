@@ -1,0 +1,50 @@
+[
+  {
+    "mode": "product",
+    "rate": 50,
+    "repeat": 1,
+    "achieved": 50.01212889950452,
+    "successful": 50.01212889950452,
+    "p95": 8.519,
+    "p99": 24.835,
+    "error": 0,
+    "dropped": 0,
+    "passed": true
+  },
+  {
+    "mode": "product",
+    "rate": 50,
+    "repeat": 2,
+    "achieved": 50.009476970860824,
+    "successful": 50.009476970860824,
+    "p95": 4.942,
+    "p99": 9.321,
+    "error": 0,
+    "dropped": 0,
+    "passed": true
+  },
+  {
+    "mode": "product",
+    "rate": 50,
+    "repeat": 3,
+    "achieved": 50.01114210250241,
+    "successful": 50.01114210250241,
+    "p95": 5.213,
+    "p99": 12.597,
+    "error": 0,
+    "dropped": 0,
+    "passed": true
+  },
+  {
+    "mode": "product",
+    "rate": 100,
+    "repeat": 1,
+    "achieved": 99.99262054460381,
+    "successful": 99.99262054460381,
+    "p95": 5.899349999999992,
+    "p99": 20.877929999999992,
+    "error": 0,
+    "dropped": 0,
+    "passed": true
+  }
+]

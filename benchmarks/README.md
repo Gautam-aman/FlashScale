@@ -60,3 +60,31 @@ from latency alone:
 
 Keep uncollected fields marked unmeasured. Run with the same telemetry enabled
 when comparing the PostgreSQL baseline against Redis experiments.
+
+## Compare the Redis integration with saved PostgreSQL results
+
+Start both Compose services and the Redis-enabled application. Then run:
+
+```bash
+docker compose up -d db redis
+python3 benchmarks/run-baseline.py --label redis --compare-with benchmarks/results/20261104T105147Z-16572f
+```
+
+If using a separate application on port 8081, add `--base-url http://localhost:8081`.
+Duration, VUs, and repetition count must match the historical baseline. A unique
+output directory preserves existing results. The suite writes `comparison.md`
+alongside `report.md`, JSON summaries, and per-run logs. Comparison requires all
+24 runs and rejects mismatched recorded environments or incomplete matrices.
+
+To regenerate a comparison from two existing complete result directories:
+
+```bash
+python3 benchmarks/compare-results.py benchmarks/results/<postgres-run> benchmarks/results/<redis-run>
+```
+
+The report compares medians of per-run p95/p99 values; these are not pooled
+percentiles. Redis write admission does not replace PostgreSQL inventory updates.
+HTTP 429 rejections count as failures, not completed reservations. Unique users
+in this workload avoid exercising the per-user burst limit. Cache TTL is left at
+60 seconds, so the read results may include expiry misses. Historical comparisons
+cannot control all changes in machine load or accumulated database contents.
