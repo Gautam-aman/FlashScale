@@ -15,6 +15,8 @@ public class ReservationFacade {
 
     private final RedisAdmissionGuard guard;
     private final ReservationService core;
+    private final RedisAdmissionGuard admission;
+    private final RedisStockGate stockGate;
 
     public ReservationDtos.ReserveResult reserve(ReservationDtos.ReserveRequest request, String key) {
 
@@ -22,23 +24,34 @@ public class ReservationFacade {
             throw new ResponseStatusException(org.springframework.http.HttpStatus.BAD_REQUEST, "Invalid Idempotency-Key");
         }
 
-        RedisAdmissionGuard.Permit permit;
+        var previous = core.replayIfExists(request, key);
+        if (previous.isPresent()) {return previous.get();}
+
+        var permit = admission.acquire(request.userId(), request.flashSaleItemId());
+        RedisStockGate.Hold hold = null;
+        boolean committed = false;
 
         try {
-            permit = guard.acquire(request.userId(), request.flashSaleItemId());
-
-        } catch (ResponseStatusException blocked) {
-            HttpStatusCode status = blocked.getStatusCode();
-            if (status.value() == 429 || status.value() == 503) {
-                return core.replayIfExists(request, key).orElseThrow(() -> blocked);
+            hold = stockGate.hold(
+                    request.flashSaleItemId(),
+                    request.quantity()
+            );
+            ReservationDtos.ReserveResult result = core.reserve(request, key);
+            committed = result.created();
+            if (committed) {
+                stockGate.confirm(hold);
+            } else {
+                stockGate.release(hold);
             }
-            throw blocked;
-        }
+            hold = null;
+            return result;
 
-        try {
-            return core.reserve(request, key);
-        } finally {
-            guard.release(permit);
+        }finally {
+            if (hold != null && !committed) {
+                stockGate.release(hold);
+            }
+
+            admission.release(permit);
         }
     }
 
