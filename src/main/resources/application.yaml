@@ -76,3 +76,8 @@ flashscale:
     user-burst: 10
     user-refill-per-second: 5
 
+
+  stock:
+    lease-ms: 30000
+
+
