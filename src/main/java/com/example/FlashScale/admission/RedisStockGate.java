@@ -1,7 +1,6 @@
 package com.example.FlashScale.admission;
 
-import lombok.RequiredArgsConstructor;
-import lombok.Value;
+import org.springframework.beans.factory.annotation.Value;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -16,7 +15,6 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
-@RequiredArgsConstructor
 public class RedisStockGate {
     private static final Logger log = LoggerFactory.getLogger(RedisStockGate.class);
 
@@ -28,17 +26,22 @@ public class RedisStockGate {
     ) {}
 
     private final StringRedisTemplate redis;
-    @Qualifier("stockHoldScript")
-    RedisScript<Long> holdScript;
+    private final RedisScript<Long> holdScript;
+    private final RedisScript<Long> confirmScript;
+    private final RedisScript<Long> releaseScript;
+    private final long leaseMs;
 
-    @Qualifier("stockConfirmScript")
-    RedisScript<Long> confirmScript;
-
-    @Qualifier("stockReleaseScript")
-    RedisScript<Long> releaseScript;
-
-  //  @Value("${flashscale.stock.lease-ms:30000}")
-    long leaseMs = 30000;
+    public RedisStockGate(StringRedisTemplate redis,
+                          @Qualifier("stockHoldScript") RedisScript<Long> holdScript,
+                          @Qualifier("stockConfirmScript") RedisScript<Long> confirmScript,
+                          @Qualifier("stockReleaseScript") RedisScript<Long> releaseScript,
+                          @Value("${flashscale.stock.lease-ms:30000}") long leaseMs) {
+        this.redis = redis;
+        this.holdScript = holdScript;
+        this.confirmScript = confirmScript;
+        this.releaseScript = releaseScript;
+        this.leaseMs = leaseMs;
+    }
 
     public Hold hold(Long itemId, int quantity) {
         String base = "flashscale:stock:item:" + itemId;

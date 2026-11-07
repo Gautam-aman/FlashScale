@@ -2,7 +2,7 @@ package com.example.FlashScale.kafka;
 
 import com.example.FlashScale.dto.ReservationCommittedEvent;
 import jakarta.transaction.Transactional;
-import org.flywaydb.core.internal.jdbc.JdbcTemplate;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;

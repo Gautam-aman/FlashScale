@@ -3,31 +3,22 @@ spring:
     name: FlashScale
 
 
-    kafka:
-      bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
-
-      producer:
-        key-serializer: org.apache.kafka.common.serialization.StringSerializer
-        value-serializer: org.apache.kafka.common.serialization.StringSerializer
-        acks: all
-        properties:
-          enable.idempotence: true
-
-      consumer:
-        group-id: flashscale-reservation-workers
-        auto-offset-reset: earliest
-        enable-auto-commit: false
-        key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-        value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-
-      listener:
-        ack-mode: record
-
-  flashscale:
-    kafka:
-      topic: flashscale.reservations.v1
-    outbox:
-      poll-delay-ms: 500
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      acks: all
+      properties:
+        enable.idempotence: true
+    consumer:
+      group-id: flashscale-reservation-workers
+      auto-offset-reset: earliest
+      enable-auto-commit: false
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    listener:
+      ack-mode: record
 
   datasource:
     url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5433}/${DB_NAME:flashscale}
@@ -70,6 +61,10 @@ management:
 
 
 flashscale:
+  kafka:
+    topic: flashscale.reservations.v1
+  outbox:
+    poll-delay-ms: 500
   admission:
     max-inflight: 100
     permit-lease-ms: 30000

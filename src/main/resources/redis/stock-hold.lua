@@ -15,7 +15,7 @@ local holdId = ARGV[1]
 local quantity = tonumber(ARGV[2])
 local leaseMs = tonumber(ARGV[3])
 
-if not quantity or quantity < 1 then
+if not quantity or quantity < 1 or quantity > 5 or quantity ~= math.floor(quantity) then
     return -3
 end
 
@@ -23,34 +23,14 @@ local time = redis.call('TIME')
 local now = tonumber(time[1]) * 1000
     + math.floor(tonumber(time[2]) / 1000)
 
--- Reclaim expired provisional holds.
-local expired = redis.call(
-    'ZRANGEBYSCORE',
-    pendingKey,
-    '-inf',
-    now,
-    'LIMIT',
-    0,
-    500
-)
-
-for _, id in ipairs(expired) do
-    local held = tonumber(
-        redis.call('HGET', quantitiesKey, id)
-    )
-
-    if held then
-        redis.call('INCRBY', stockKey, held)
-        redis.call('HDEL', quantitiesKey, id)
-    end
-
-    redis.call('ZREM', pendingKey, id)
+-- Redis cannot determine whether an expired hold committed in PostgreSQL.
+-- Keep uncertain holds for offline reconciliation instead of refunding them.
+local stock = tonumber(redis.call('GET', stockKey))
+if not stock then
+    return -2
 end
 
-local stock = tonumber(redis.call('GET', stockKey))
-
--- Missing inventory requires reconciliation.
-if not stock then
+if redis.call('ZCOUNT', pendingKey, '-inf', now) > 0 then
     return -2
 end
 

@@ -3,7 +3,6 @@ package com.example.FlashScale.admission;
 import com.example.FlashScale.reservation.ReservationDtos;
 import com.example.FlashScale.reservation.ReservationService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -13,7 +12,6 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class ReservationFacade {
 
-    private final RedisAdmissionGuard guard;
     private final ReservationService core;
     private final RedisAdmissionGuard admission;
     private final RedisStockGate stockGate;

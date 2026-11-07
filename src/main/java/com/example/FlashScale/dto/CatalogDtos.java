@@ -8,6 +8,6 @@ public class CatalogDtos {
 
     public record FlashSaleResponse(Long id, String title, Instant startsAt, Instant endsAt, String status) {}
 
-    public record SaleItemResponse(Long productId, String sku, String name, Long salePricePaise, int totalStock, int availableStock) {}
+    public record SaleItemResponse(Long flashSaleItemId, Long productId, String sku, String name, Long salePricePaise, int totalStock, int availableStock) {}
 
 }

@@ -17,6 +17,11 @@ end
 redis.call('HDEL', KEYS[3], holdId)
 redis.call('ZREM', KEYS[2], holdId)
 
+-- An evicted inventory key must stay missing until reconciliation.
+if redis.call('EXISTS', KEYS[1]) == 0 then
+    return -2
+end
+
 redis.call(
     'INCRBY',
     KEYS[1],

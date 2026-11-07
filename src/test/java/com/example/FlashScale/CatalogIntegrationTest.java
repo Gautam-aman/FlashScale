@@ -18,16 +18,18 @@ class CatalogIntegrationTest {
     @Test
     void shouldLoadSeededProducts() {
         var products = catalogService.getProducts();
-        assertEquals(2, products.size());
+        assertTrue(products.stream().anyMatch(product -> product.sku().equals("HP-001")));
+        assertTrue(products.stream().anyMatch(product -> product.sku().equals("KB-001")));
     }
 
     @Test
     void shouldLoadSaleInventory() {
         var sales = catalogService.getSales();
 
-        assertEquals(1, sales.size());
+        var seededSale = sales.stream().filter(sale -> sale.title().equals("Diwali Flash Sale"))
+                .findFirst().orElseThrow();
 
-        var items = catalogService.getSaleItems(sales.getFirst().id());
+        var items = catalogService.getSaleItems(seededSale.id());
 
         assertEquals(2, items.size());
         assertTrue(items.stream().allMatch(item -> item.availableStock() >= 0 && item.availableStock() <= item.totalStock()));

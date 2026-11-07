@@ -11,12 +11,14 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.time.Instant;
 import java.util.List;
 
 @Service
+@Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class CatalogService {
 
@@ -73,7 +75,7 @@ public class CatalogService {
 
         Product product = item.getProduct();
 
-        return new CatalogDtos.SaleItemResponse(product.getId(), product.getSku(), product.getName(), item.getSalePricePaise(), item.getTotalStock(), item.getAvailableStock());
+        return new CatalogDtos.SaleItemResponse(item.getId(), product.getId(), product.getSku(), product.getName(), item.getSalePricePaise(), item.getTotalStock(), item.getAvailableStock());
     }
 
 }

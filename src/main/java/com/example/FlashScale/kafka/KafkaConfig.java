@@ -1,6 +1,7 @@
 package com.example.FlashScale.kafka;
 
 import org.apache.kafka.clients.admin.NewTopic;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.config.TopicBuilder;
@@ -12,9 +13,9 @@ import org.springframework.util.backoff.FixedBackOff;
 public class KafkaConfig {
 
     @Bean
-    public NewTopic reservationTopic() {
+    public NewTopic reservationTopic(@Value("${flashscale.kafka.topic}") String topic) {
         return TopicBuilder
-                .name("flashscale.reservations.v1")
+                .name(topic)
                 .partitions(3)
                 .replicas(1)
                 .build();

@@ -88,3 +88,18 @@ HTTP 429 rejections count as failures, not completed reservations. Unique users
 in this workload avoid exercising the per-user burst limit. Cache TTL is left at
 60 seconds, so the read results may include expiry misses. Historical comparisons
 cannot control all changes in machine load or accumulated database contents.
+
+## Stock gate reconciliation
+
+The current application requires PostgreSQL, Redis, and Kafka. Start them with
+`docker compose up -d db redis kafka`. Before using a sale item with the stock
+gate, stop all API instances and benchmark clients and run
+`bash scripts/reconcile-stock.sh <flash-sale-item-id>` to initialize its Redis
+inventory from PostgreSQL. Newly created benchmark items also need initialization
+before starting their reservation load; the runner does not do this automatically.
+
+Missing Redis inventory or expired pending holds return HTTP 503 until reconciled.
+Expired holds are retained because PostgreSQL may already have committed them;
+automatically refunding those holds would inflate Redis inventory. A successful
+confirmation or an explicit release clears its hold. Reconciliation must run only
+with API traffic stopped, as the script's confirmation prompt requires.
