@@ -79,6 +79,12 @@ def main():
                 if mode == 'reserve':
                     stock = max(50000, rate * args.duration * 2)
                     item = int(sql(stock=stock))
+                    # Only initialize the fresh item created above, never reconcile a live item.
+                    stock_key = f'flashscale:stock:item:{item}'
+                    initialized = command(['docker', 'compose', 'exec', '-T', 'redis', 'redis-cli',
+                                           'SET', stock_key, str(stock), 'NX'], capture_output=True).stdout.strip()
+                    if initialized != 'OK':
+                        raise RuntimeError(f'Cannot initialize fresh benchmark item {item}')
                     extra = ['-e', f'ITEM_ID={item}', '-e', f'RUN_ID={run_id}-{name}']
                 metrics, code = load(name, mode, rate, args.duration, extra)
                 success = metrics['business_success']['value']

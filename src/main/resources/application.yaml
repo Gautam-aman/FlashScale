@@ -11,6 +11,11 @@ spring:
       acks: all
       properties:
         enable.idempotence: true
+        max.block.ms: 1000
+        delivery.timeout.ms: 10000
+        request.timeout.ms: 5000
+        linger.ms: 5
+        batch.size: 65536
     consumer:
       group-id: flashscale-reservation-workers
       auto-offset-reset: earliest
@@ -61,10 +66,14 @@ management:
 
 
 flashscale:
+  cache:
+    local-max-products: 10000
+    local-ttl-seconds: 5
   kafka:
     topic: flashscale.reservations.v1
   outbox:
-    poll-delay-ms: 500
+    poll-delay-ms: 10
+    batch-size: 500
   admission:
     max-inflight: 100
     permit-lease-ms: 30000

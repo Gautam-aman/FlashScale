@@ -103,3 +103,43 @@ Expired holds are retained because PostgreSQL may already have committed them;
 automatically refunding those holds would inflate Redis inventory. A successful
 confirmation or an explicit release clears its hold. Reconciliation must run only
 with API traffic stopped, as the script's confirmation prompt requires.
+
+## 10,000 requests/sec capacity checks
+
+Product reads now use a bounded Caffeine cache (10,000 products, five-second local
+TTL) before the existing 60-second Redis cache. Concurrent loads of one product
+are coalesced per instance. Product metadata can remain stale for up to roughly
+65 seconds across both caches; inventory and reservations do not use this cache.
+
+With the application running on port 8081:
+
+```bash
+python3 benchmarks/run-capacity.py --rate 10000 --duration 120 --vus 1000 --repeats 3
+```
+
+This tests **one hot product**, not arbitrary catalog traffic or reservations.
+Each measured run must have >99.9% expected responses, <0.1% HTTP errors, no
+missed arrivals, achieved throughput >=99% of requested RPS, p95 <100 ms and
+p99 <250 ms. Every failed run is retained. Run the generator on a separate host
+for deployment capacity claims; record server hardware and competing workloads.
+The script exits unsuccessfully if any measured repetition fails.
+
+To measure maximum delivered throughput separately:
+
+```bash
+k6 run -e BASE_URL=http://localhost:8081 -e MODE=product -e RATE=10000 \
+  -e VUS=50 -e DURATION=60s load-tests/throughput.js
+```
+
+This uses constant concurrent clients, not fixed arrivals. Its throughput result
+cannot establish that every arrival in a 10,000/sec burst will be accepted.
+
+The outbox publisher dispatches up to 500 sends before awaiting acknowledgements,
+then batches successful publication markers in PostgreSQL. It polls every 10 ms
+by default. Failed or uncertain sends retain their claim for retry; duplicate
+publication remains possible and the consumer deduplicates event IDs. These
+settings remove the former 25-events-per-500-ms restriction; event throughput
+must still be measured independently of product-read throughput.
+
+The baseline runner now initializes Redis inventory only for each freshly created
+benchmark item using `SET NX`. Existing items still require offline reconciliation.

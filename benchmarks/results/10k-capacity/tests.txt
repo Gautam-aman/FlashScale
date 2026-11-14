@@ -1,0 +1,5 @@
+Verification: ./mvnw -o verify
+Tests run: 22, Failures: 0, Errors: 0, Skipped: 0
+BUILD SUCCESS
+Includes PostgreSQL/Redis integration, cache concurrency, and Kafka publisher acknowledgement regression tests.
+Publisher regression uses a mocked KafkaTemplate; end-to-end event capacity was not measured.

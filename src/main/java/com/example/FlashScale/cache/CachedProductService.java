@@ -2,7 +2,9 @@ package com.example.FlashScale.cache;
 
 import com.example.FlashScale.dto.CatalogDtos;
 import com.example.FlashScale.service.CatalogService;
-import lombok.RequiredArgsConstructor;
+import com.github.benmanes.caffeine.cache.Cache;
+import com.github.benmanes.caffeine.cache.Caffeine;
+import org.springframework.beans.factory.annotation.Value;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
@@ -12,7 +14,6 @@ import java.time.Duration;
 import org.slf4j.Logger;
 
 @Service
-@RequiredArgsConstructor
 public class CachedProductService {
 
     private static final Logger log = LoggerFactory.getLogger(CachedProductService.class);
@@ -21,8 +22,24 @@ public class CachedProductService {
     private final CatalogService catalog;
     private final StringRedisTemplate redis;
     private final ObjectMapper mapper;
+    private final Cache<Long, CatalogDtos.ProductResponse> local;
+
+    public CachedProductService(CatalogService catalog, StringRedisTemplate redis, ObjectMapper mapper,
+                                @Value("${flashscale.cache.local-max-products:10000}") long maximumSize,
+                                @Value("${flashscale.cache.local-ttl-seconds:5}") long ttlSeconds) {
+        this.catalog = catalog;
+        this.redis = redis;
+        this.mapper = mapper;
+        this.local = Caffeine.newBuilder().maximumSize(maximumSize)
+                .expireAfterWrite(Duration.ofSeconds(ttlSeconds)).build();
+    }
 
     public CatalogDtos.ProductResponse getProduct(Long id) {
+        // Atomic loading coalesces simultaneous misses for the same product.
+        return local.get(id, this::loadProduct);
+    }
+
+    private CatalogDtos.ProductResponse loadProduct(Long id) {
         String key = "flashscale:product:" + id;
         try {
             String cached = redis.opsForValue().get(key);

@@ -1,0 +1,273 @@
+
+         /\      Grafana   /‾‾/  
+    /\  /  \     |\  __   /  /   
+   /  \/    \    | |/ /  /   ‾‾\ 
+  /          \   |   (  |  (‾)  |
+ / __________ \  |_|\_\  \_____/ 
+
+
+     execution: local
+        script: load-tests/capacity.js
+        output: -
+
+     scenarios: (100.00%) 1 scenario, 1000 max VUs, 1m30s max duration (incl. graceful stop):
+              * baseline: 10000.00 iterations/s for 1m0s (maxVUs: 1000, gracefulStop: 30s)
+
+time="2026-11-14T18:19:04+05:30" level=warning msg="Request Failed" error="Get \"http://localhost:8081/api/v1/products/1\": read tcp 127.0.0.1:55538->127.0.0.1:8081: read: connection reset by peer"
+time="2026-11-14T18:19:04+05:30" level=warning msg="Request Failed" error="Get \"http://localhost:8081/api/v1/products/1\": read tcp 127.0.0.1:55551->127.0.0.1:8081: read: connection reset by peer"
+time="2026-11-14T18:19:04+05:30" level=warning msg="Request Failed" error="Get \"http://localhost:8081/api/v1/products/1\": read tcp 127.0.0.1:55553->127.0.0.1:8081: read: connection reset by peer"
+time="2026-11-14T18:19:04+05:30" level=warning msg="Request Failed" error="Get \"http://localhost:8081/api/v1/products/1\": read tcp 127.0.0.1:55544->127.0.0.1:8081: read: connection reset by peer"
+time="2026-11-14T18:19:04+05:30" level=warning msg="Request Failed" error="Get \"http://localhost:8081/api/v1/products/1\": read tcp 127.0.0.1:55549->127.0.0.1:8081: read: connection reset by peer"
+time="2026-11-14T18:19:04+05:30" level=warning msg="Request Failed" error="Get \"http://localhost:8081/api/v1/products/1\": read tcp 127.0.0.1:55550->127.0.0.1:8081: read: connection reset by peer"
+time="2026-11-14T18:19:04+05:30" level=warning msg="Request Failed" error="Get \"http://localhost:8081/api/v1/products/1\": read tcp 127.0.0.1:55543->127.0.0.1:8081: read: connection reset by peer"
+time="2026-11-14T18:19:04+05:30" level=warning msg="Request Failed" error="Get \"http://localhost:8081/api/v1/products/1\": read tcp 127.0.0.1:55598->127.0.0.1:8081: read: connection reset by peer"
+time="2026-11-14T18:19:04+05:30" level=warning msg="Request Failed" error="Get \"http://localhost:8081/api/v1/products/1\": read tcp 127.0.0.1:55605->127.0.0.1:8081: read: connection reset by peer"
+time="2026-11-14T18:19:04+05:30" level=warning msg="Request Failed" error="Get \"http://localhost:8081/api/v1/products/1\": read tcp 127.0.0.1:55599->127.0.0.1:8081: read: connection reset by peer"
+time="2026-11-14T18:19:04+05:30" level=warning msg="Request Failed" error="Get \"http://localhost:8081/api/v1/products/1\": read tcp 127.0.0.1:55597->127.0.0.1:8081: read: connection reset by peer"
+time="2026-11-14T18:19:04+05:30" level=warning msg="Request Failed" error="Get \"http://localhost:8081/api/v1/products/1\": read tcp 127.0.0.1:55542->127.0.0.1:8081: read: connection reset by peer"
+time="2026-11-14T18:19:04+05:30" level=warning msg="Request Failed" error="Get \"http://localhost:8081/api/v1/products/1\": read tcp 127.0.0.1:55547->127.0.0.1:8081: read: connection reset by peer"
+time="2026-11-14T18:19:04+05:30" level=warning msg="Request Failed" error="Get \"http://localhost:8081/api/v1/products/1\": read tcp 127.0.0.1:55541->127.0.0.1:8081: read: connection reset by peer"
+time="2026-11-14T18:19:04+05:30" level=warning msg="Request Failed" error="Get \"http://localhost:8081/api/v1/products/1\": read tcp 127.0.0.1:55546->127.0.0.1:8081: read: connection reset by peer"
+time="2026-11-14T18:19:04+05:30" level=warning msg="Request Failed" error="Get \"http://localhost:8081/api/v1/products/1\": read tcp 127.0.0.1:55540->127.0.0.1:8081: read: connection reset by peer"
+time="2026-11-14T18:19:04+05:30" level=warning msg="Request Failed" error="Get \"http://localhost:8081/api/v1/products/1\": read tcp 127.0.0.1:55539->127.0.0.1:8081: read: connection reset by peer"
+time="2026-11-14T18:19:04+05:30" level=warning msg="Request Failed" error="Get \"http://localhost:8081/api/v1/products/1\": read tcp 127.0.0.1:55548->127.0.0.1:8081: read: connection reset by peer"
+time="2026-11-14T18:19:04+05:30" level=warning msg="Request Failed" error="Get \"http://localhost:8081/api/v1/products/1\": read tcp 127.0.0.1:55535->127.0.0.1:8081: read: connection reset by peer"
+time="2026-11-14T18:19:04+05:30" level=warning msg="Request Failed" error="Get \"http://localhost:8081/api/v1/products/1\": read tcp 127.0.0.1:55604->127.0.0.1:8081: read: connection reset by peer"
+time="2026-11-14T18:19:04+05:30" level=warning msg="Request Failed" error="Get \"http://localhost:8081/api/v1/products/1\": read tcp 127.0.0.1:55600->127.0.0.1:8081: read: connection reset by peer"
+
+running (0m00.9s), 0002/1000 VUs, 9058 complete and 0 interrupted iterations
+baseline   [   2% ] 0002/1000 VUs  0m00.9s/1m0s  10000.00 iters/s
+time="2026-11-14T18:19:06+05:30" level=warning msg="Insufficient VUs, reached 1000 active VUs and cannot initialize more" executor=constant-arrival-rate scenario=baseline
+
+running (0m01.9s), 0000/1000 VUs, 18288 complete and 0 interrupted iterations
+baseline   [   3% ] 0001/1000 VUs  0m01.9s/1m0s  10000.00 iters/s
+
+running (0m02.9s), 0001/1000 VUs, 28288 complete and 0 interrupted iterations
+baseline   [   5% ] 0001/1000 VUs  0m02.9s/1m0s  10000.00 iters/s
+
+running (0m03.9s), 0003/1000 VUs, 38285 complete and 0 interrupted iterations
+baseline   [   7% ] 0003/1000 VUs  0m03.9s/1m0s  10000.00 iters/s
+
+running (0m04.9s), 0000/1000 VUs, 48288 complete and 0 interrupted iterations
+baseline   [   8% ] 0000/1000 VUs  0m04.9s/1m0s  10000.00 iters/s
+
+running (0m05.9s), 0000/1000 VUs, 58288 complete and 0 interrupted iterations
+baseline   [  10% ] 0001/1000 VUs  0m05.9s/1m0s  10000.00 iters/s
+
+running (0m06.9s), 0001/1000 VUs, 68288 complete and 0 interrupted iterations
+baseline   [  12% ] 0001/1000 VUs  0m06.9s/1m0s  10000.00 iters/s
+
+running (0m07.9s), 0001/1000 VUs, 78288 complete and 0 interrupted iterations
+baseline   [  13% ] 0001/1000 VUs  0m07.9s/1m0s  10000.00 iters/s
+
+running (0m08.9s), 0000/1000 VUs, 88288 complete and 0 interrupted iterations
+baseline   [  15% ] 0000/1000 VUs  0m08.9s/1m0s  10000.00 iters/s
+
+running (0m09.9s), 0001/1000 VUs, 98287 complete and 0 interrupted iterations
+baseline   [  17% ] 0001/1000 VUs  0m09.9s/1m0s  10000.00 iters/s
+
+running (0m10.9s), 0001/1000 VUs, 108288 complete and 0 interrupted iterations
+baseline   [  18% ] 0001/1000 VUs  0m10.9s/1m0s  10000.00 iters/s
+
+running (0m11.9s), 0004/1000 VUs, 118285 complete and 0 interrupted iterations
+baseline   [  20% ] 0004/1000 VUs  0m11.9s/1m0s  10000.00 iters/s
+
+running (0m12.9s), 0001/1000 VUs, 127967 complete and 0 interrupted iterations
+baseline   [  22% ] 0002/1000 VUs  0m12.9s/1m0s  10000.00 iters/s
+
+running (0m13.9s), 0009/1000 VUs, 137956 complete and 0 interrupted iterations
+baseline   [  23% ] 0009/1000 VUs  0m13.9s/1m0s  10000.00 iters/s
+
+running (0m14.9s), 0001/1000 VUs, 145150 complete and 0 interrupted iterations
+baseline   [  25% ] 0001/1000 VUs  0m14.9s/1m0s  10000.00 iters/s
+
+running (0m15.9s), 0002/1000 VUs, 155150 complete and 0 interrupted iterations
+baseline   [  27% ] 0002/1000 VUs  0m15.9s/1m0s  10000.00 iters/s
+
+running (0m16.9s), 0040/1000 VUs, 165046 complete and 0 interrupted iterations
+baseline   [  28% ] 0040/1000 VUs  0m16.9s/1m0s  10000.00 iters/s
+
+running (0m17.9s), 0013/1000 VUs, 173322 complete and 0 interrupted iterations
+baseline   [  30% ] 0013/1000 VUs  0m17.9s/1m0s  10000.00 iters/s
+
+running (0m19.0s), 0345/1000 VUs, 183480 complete and 0 interrupted iterations
+baseline   [  32% ] 0345/1000 VUs  0m19.0s/1m0s  10000.00 iters/s
+
+running (0m19.9s), 0766/1000 VUs, 190750 complete and 0 interrupted iterations
+baseline   [  33% ] 0766/1000 VUs  0m19.9s/1m0s  10000.00 iters/s
+
+running (0m20.9s), 0135/1000 VUs, 200756 complete and 0 interrupted iterations
+baseline   [  35% ] 0134/1000 VUs  0m20.9s/1m0s  10000.00 iters/s
+
+running (0m21.9s), 0012/1000 VUs, 210047 complete and 0 interrupted iterations
+baseline   [  37% ] 0012/1000 VUs  0m21.9s/1m0s  10000.00 iters/s
+
+running (0m22.9s), 0526/1000 VUs, 218765 complete and 0 interrupted iterations
+baseline   [  38% ] 0526/1000 VUs  0m22.9s/1m0s  10000.00 iters/s
+
+running (0m23.9s), 0001/1000 VUs, 229425 complete and 0 interrupted iterations
+baseline   [  40% ] 0001/1000 VUs  0m23.9s/1m0s  10000.00 iters/s
+
+running (0m24.9s), 0016/1000 VUs, 239413 complete and 0 interrupted iterations
+baseline   [  42% ] 0016/1000 VUs  0m24.9s/1m0s  10000.00 iters/s
+
+running (0m25.9s), 0001/1000 VUs, 249425 complete and 0 interrupted iterations
+baseline   [  43% ] 0001/1000 VUs  0m25.9s/1m0s  10000.00 iters/s
+
+running (0m26.9s), 0001/1000 VUs, 259424 complete and 0 interrupted iterations
+baseline   [  45% ] 0001/1000 VUs  0m26.9s/1m0s  10000.00 iters/s
+
+running (0m27.9s), 0001/1000 VUs, 269425 complete and 0 interrupted iterations
+baseline   [  47% ] 0001/1000 VUs  0m27.9s/1m0s  10000.00 iters/s
+
+running (0m28.9s), 0003/1000 VUs, 278920 complete and 0 interrupted iterations
+baseline   [  48% ] 0003/1000 VUs  0m28.9s/1m0s  10000.00 iters/s
+
+running (0m29.9s), 0002/1000 VUs, 288610 complete and 0 interrupted iterations
+baseline   [  50% ] 0002/1000 VUs  0m29.9s/1m0s  10000.00 iters/s
+
+running (0m30.9s), 0200/1000 VUs, 298381 complete and 0 interrupted iterations
+baseline   [  52% ] 0200/1000 VUs  0m30.9s/1m0s  10000.00 iters/s
+
+running (0m31.9s), 0002/1000 VUs, 308610 complete and 0 interrupted iterations
+baseline   [  53% ] 0002/1000 VUs  0m31.9s/1m0s  10000.00 iters/s
+
+running (0m32.9s), 0001/1000 VUs, 318611 complete and 0 interrupted iterations
+baseline   [  55% ] 0001/1000 VUs  0m32.9s/1m0s  10000.00 iters/s
+
+running (0m33.9s), 0000/1000 VUs, 328611 complete and 0 interrupted iterations
+baseline   [  57% ] 0001/1000 VUs  0m33.9s/1m0s  10000.00 iters/s
+
+running (0m34.9s), 0002/1000 VUs, 338610 complete and 0 interrupted iterations
+baseline   [  58% ] 0002/1000 VUs  0m34.9s/1m0s  10000.00 iters/s
+
+running (0m35.9s), 0055/1000 VUs, 348561 complete and 0 interrupted iterations
+baseline   [  60% ] 0055/1000 VUs  0m35.9s/1m0s  10000.00 iters/s
+
+running (0m36.9s), 0003/1000 VUs, 358610 complete and 0 interrupted iterations
+baseline   [  62% ] 0003/1000 VUs  0m36.9s/1m0s  10000.00 iters/s
+
+running (0m37.9s), 0001/1000 VUs, 368611 complete and 0 interrupted iterations
+baseline   [  63% ] 0001/1000 VUs  0m37.9s/1m0s  10000.00 iters/s
+
+running (0m38.9s), 0002/1000 VUs, 378609 complete and 0 interrupted iterations
+baseline   [  65% ] 0003/1000 VUs  0m38.9s/1m0s  10000.00 iters/s
+
+running (0m39.9s), 0371/1000 VUs, 388637 complete and 0 interrupted iterations
+baseline   [  67% ] 0371/1000 VUs  0m39.9s/1m0s  10000.00 iters/s
+
+running (0m40.9s), 0002/1000 VUs, 398610 complete and 0 interrupted iterations
+baseline   [  68% ] 0002/1000 VUs  0m40.9s/1m0s  10000.00 iters/s
+
+running (0m41.9s), 0002/1000 VUs, 408190 complete and 0 interrupted iterations
+baseline   [  70% ] 0002/1000 VUs  0m41.9s/1m0s  10000.00 iters/s
+
+running (0m42.9s), 0001/1000 VUs, 418191 complete and 0 interrupted iterations
+baseline   [  72% ] 0001/1000 VUs  0m42.9s/1m0s  10000.00 iters/s
+
+running (0m43.9s), 0006/1000 VUs, 428132 complete and 0 interrupted iterations
+baseline   [  73% ] 0006/1000 VUs  0m43.9s/1m0s  10000.00 iters/s
+
+running (0m44.9s), 0001/1000 VUs, 438191 complete and 0 interrupted iterations
+baseline   [  75% ] 0001/1000 VUs  0m44.9s/1m0s  10000.00 iters/s
+
+running (0m45.9s), 0001/1000 VUs, 448191 complete and 0 interrupted iterations
+baseline   [  77% ] 0001/1000 VUs  0m45.9s/1m0s  10000.00 iters/s
+
+running (0m46.9s), 0002/1000 VUs, 458190 complete and 0 interrupted iterations
+baseline   [  78% ] 0002/1000 VUs  0m46.9s/1m0s  10000.00 iters/s
+
+running (0m47.9s), 0001/1000 VUs, 468191 complete and 0 interrupted iterations
+baseline   [  80% ] 0001/1000 VUs  0m47.9s/1m0s  10000.00 iters/s
+
+running (0m48.9s), 0001/1000 VUs, 478191 complete and 0 interrupted iterations
+baseline   [  82% ] 0001/1000 VUs  0m48.9s/1m0s  10000.00 iters/s
+
+running (0m49.9s), 0001/1000 VUs, 488191 complete and 0 interrupted iterations
+baseline   [  83% ] 0001/1000 VUs  0m49.9s/1m0s  10000.00 iters/s
+
+running (0m50.9s), 0001/1000 VUs, 498191 complete and 0 interrupted iterations
+baseline   [  85% ] 0001/1000 VUs  0m50.9s/1m0s  10000.00 iters/s
+
+running (0m51.9s), 0000/1000 VUs, 508191 complete and 0 interrupted iterations
+baseline   [  87% ] 0000/1000 VUs  0m51.9s/1m0s  10000.00 iters/s
+
+running (0m52.9s), 0001/1000 VUs, 518191 complete and 0 interrupted iterations
+baseline   [  88% ] 0001/1000 VUs  0m52.9s/1m0s  10000.00 iters/s
+
+running (0m53.9s), 0001/1000 VUs, 528191 complete and 0 interrupted iterations
+baseline   [  90% ] 0001/1000 VUs  0m53.9s/1m0s  10000.00 iters/s
+
+running (0m54.9s), 0000/1000 VUs, 538191 complete and 0 interrupted iterations
+baseline   [  92% ] 0000/1000 VUs  0m54.9s/1m0s  10000.00 iters/s
+
+running (0m55.9s), 0007/1000 VUs, 548190 complete and 0 interrupted iterations
+baseline   [  93% ] 0008/1000 VUs  0m55.9s/1m0s  10000.00 iters/s
+
+running (0m56.9s), 0001/1000 VUs, 558191 complete and 0 interrupted iterations
+baseline   [  95% ] 0001/1000 VUs  0m56.9s/1m0s  10000.00 iters/s
+
+running (0m57.9s), 0002/1000 VUs, 568190 complete and 0 interrupted iterations
+baseline   [  97% ] 0002/1000 VUs  0m57.9s/1m0s  10000.00 iters/s
+
+running (0m58.9s), 0120/1000 VUs, 577087 complete and 0 interrupted iterations
+baseline   [  98% ] 0120/1000 VUs  0m58.9s/1m0s  10000.00 iters/s
+
+running (1m00.0s), 0288/1000 VUs, 587855 complete and 0 interrupted iterations
+baseline   [ 100% ] 0284/1000 VUs  1m00.0s/1m0s  10000.00 iters/s
+
+
+  █ THRESHOLDS 
+
+    business_success
+    ✓ 'rate>0.999' rate=99.99%
+
+    dropped_iterations
+    ✗ 'count==0' count=11348
+
+    http_req_duration
+    ✓ 'p(95)<100' p(95)=16.83ms
+    ✓ 'p(99)<250' p(99)=75.19ms
+
+    http_req_failed
+    ✓ 'rate<0.001' rate=0.00%
+
+    http_reqs
+    ✗ 'rate>=9900' rate=9810.553535/s
+
+
+  █ TOTAL RESULTS 
+
+    checks_total.......: 588653 9810.553535/s
+    checks_succeeded...: 99.99% 588632 out of 588653
+    checks_failed......: 0.00%  21 out of 588653
+
+    ✗ expected HTTP status
+      ↳  99% — ✓ 588632 / ✗ 21
+
+    CUSTOM
+    business_success...............: 99.99% 588632 out of 588653
+
+    HTTP
+    http_req_duration..............: avg=3.24ms min=40µs   med=69µs    p(90)=4.55ms p(95)=16.83ms p(99)=75.19ms max=397.06ms
+      { expected_response:true }...: avg=3.24ms min=40µs   med=69µs    p(90)=4.54ms p(95)=16.83ms p(99)=75.19ms max=397.06ms
+    http_req_failed................: 0.00%  21 out of 588653
+    http_reqs......................: 588653 9810.553535/s
+
+    EXECUTION
+    dropped_iterations.............: 11348  189.126976/s
+    iteration_duration.............: avg=3.74ms min=56.2µs med=92.29µs p(90)=5.14ms p(95)=19.98ms p(99)=87.83ms max=397.17ms
+    iterations.....................: 588653 9810.553535/s
+    vus............................: 76     min=0                max=845 
+    vus_max........................: 1000   min=1000             max=1000
+
+    NETWORK
+    data_received..................: 105 MB 1.7 MB/s
+    data_sent......................: 51 MB  854 kB/s
+
+
+
+
+running (1m00.0s), 0000/1000 VUs, 588653 complete and 0 interrupted iterations
+baseline ✓ [ 100% ] 0000/1000 VUs  1m0s  10000.00 iters/s
+time="2026-11-14T18:20:05+05:30" level=error msg="thresholds on metrics 'dropped_iterations, http_reqs' have been crossed"

@@ -1,0 +1,129 @@
+
+         /\      Grafana   /‾‾/  
+    /\  /  \     |\  __   /  /   
+   /  \/    \    | |/ /  /   ‾‾\ 
+  /          \   |   (  |  (‾)  |
+ / __________ \  |_|\_\  \_____/ 
+
+
+     execution: local
+        script: load-tests/capacity.js
+        output: -
+
+     scenarios: (100.00%) 1 scenario, 300 max VUs, 50s max duration (incl. graceful stop):
+              * baseline: 1000.00 iterations/s for 20s (maxVUs: 300, gracefulStop: 30s)
+
+
+running (01.0s), 001/300 VUs, 966 complete and 0 interrupted iterations
+baseline   [   5% ] 001/300 VUs  01.0s/20s  1000.00 iters/s
+
+running (02.0s), 000/300 VUs, 1966 complete and 0 interrupted iterations
+baseline   [  10% ] 000/300 VUs  02.0s/20s  1000.00 iters/s
+
+running (03.0s), 000/300 VUs, 2966 complete and 0 interrupted iterations
+baseline   [  15% ] 000/300 VUs  03.0s/20s  1000.00 iters/s
+
+running (04.0s), 000/300 VUs, 3966 complete and 0 interrupted iterations
+baseline   [  20% ] 000/300 VUs  04.0s/20s  1000.00 iters/s
+
+running (05.0s), 001/300 VUs, 4965 complete and 0 interrupted iterations
+baseline   [  25% ] 001/300 VUs  05.0s/20s  1000.00 iters/s
+
+running (06.0s), 000/300 VUs, 5966 complete and 0 interrupted iterations
+baseline   [  30% ] 000/300 VUs  06.0s/20s  1000.00 iters/s
+
+running (07.0s), 000/300 VUs, 6966 complete and 0 interrupted iterations
+baseline   [  35% ] 000/300 VUs  07.0s/20s  1000.00 iters/s
+
+running (08.0s), 082/300 VUs, 7891 complete and 0 interrupted iterations
+baseline   [  40% ] 082/300 VUs  08.0s/20s  1000.00 iters/s
+
+running (09.0s), 000/300 VUs, 8966 complete and 0 interrupted iterations
+baseline   [  45% ] 000/300 VUs  09.0s/20s  1000.00 iters/s
+
+running (10.0s), 000/300 VUs, 9966 complete and 0 interrupted iterations
+baseline   [  50% ] 000/300 VUs  10.0s/20s  1000.00 iters/s
+
+running (11.0s), 001/300 VUs, 10965 complete and 0 interrupted iterations
+baseline   [  55% ] 001/300 VUs  11.0s/20s  1000.00 iters/s
+
+running (12.0s), 000/300 VUs, 11966 complete and 0 interrupted iterations
+baseline   [  60% ] 000/300 VUs  12.0s/20s  1000.00 iters/s
+
+running (13.0s), 000/300 VUs, 12966 complete and 0 interrupted iterations
+baseline   [  65% ] 000/300 VUs  13.0s/20s  1000.00 iters/s
+
+running (14.0s), 000/300 VUs, 13966 complete and 0 interrupted iterations
+baseline   [  70% ] 000/300 VUs  14.0s/20s  1000.00 iters/s
+
+running (15.0s), 001/300 VUs, 14965 complete and 0 interrupted iterations
+baseline   [  75% ] 001/300 VUs  15.0s/20s  1000.00 iters/s
+
+running (16.0s), 001/300 VUs, 15965 complete and 0 interrupted iterations
+baseline   [  80% ] 001/300 VUs  16.0s/20s  1000.00 iters/s
+
+running (17.0s), 001/300 VUs, 16965 complete and 0 interrupted iterations
+baseline   [  85% ] 001/300 VUs  17.0s/20s  1000.00 iters/s
+
+running (18.0s), 000/300 VUs, 17966 complete and 0 interrupted iterations
+baseline   [  90% ] 000/300 VUs  18.0s/20s  1000.00 iters/s
+
+running (19.0s), 000/300 VUs, 18966 complete and 0 interrupted iterations
+baseline   [  95% ] 000/300 VUs  19.0s/20s  1000.00 iters/s
+
+running (20.0s), 000/300 VUs, 19966 complete and 0 interrupted iterations
+baseline   [ 100% ] 000/300 VUs  20.0s/20s  1000.00 iters/s
+
+
+  █ THRESHOLDS 
+
+    business_success
+    ✓ 'rate>0.999' rate=100.00%
+
+    dropped_iterations
+    ✓ 'count==0' count=0
+
+    http_req_duration
+    ✓ 'p(95)<100' p(95)=4.64ms
+    ✓ 'p(99)<250' p(99)=67.59ms
+
+    http_req_failed
+    ✓ 'rate<0.001' rate=0.00%
+
+    http_reqs
+    ✓ 'rate>=990' rate=999.79939/s
+
+
+  █ TOTAL RESULTS 
+
+    checks_total.......: 20000   999.79939/s
+    checks_succeeded...: 100.00% 20000 out of 20000
+    checks_failed......: 0.00%   0 out of 20000
+
+    ✓ expected HTTP status
+
+    CUSTOM
+    business_success...............: 100.00% 20000 out of 20000
+
+    HTTP
+    http_req_duration..............: avg=2.63ms min=73µs med=226µs    p(90)=997µs  p(95)=4.64ms p(99)=67.59ms max=244.67ms
+      { expected_response:true }...: avg=2.63ms min=73µs med=226µs    p(90)=997µs  p(95)=4.64ms p(99)=67.59ms max=244.67ms
+    http_req_failed................: 0.00%   0 out of 20000
+    http_reqs......................: 20000   999.79939/s
+
+    EXECUTION
+    dropped_iterations.............: 0       0/s
+    iteration_duration.............: avg=2.75ms min=99µs med=283.89µs p(90)=1.17ms p(95)=5.17ms p(99)=68.13ms max=250.69ms
+    iterations.....................: 20000   999.79939/s
+    vus............................: 0       min=0              max=80 
+    vus_max........................: 300     min=300            max=300
+
+    NETWORK
+    data_received..................: 3.6 MB  178 kB/s
+    data_sent......................: 1.7 MB  87 kB/s
+
+
+
+
+running (20.0s), 000/300 VUs, 20000 complete and 0 interrupted iterations
+baseline ✓ [ 100% ] 000/300 VUs  20s  1000.00 iters/s
